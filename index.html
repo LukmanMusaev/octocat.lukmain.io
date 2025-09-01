@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CleanDrive — Выездная автомойка</title>
+  <meta name="description" content="Профессиональная выездная автомойка у вас дома или на работе. Быстро, чисто, удобно!" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://вашсайт.рф" />
+
+  <!-- Robots -->
+  <meta name="robots" content="index, follow">
+  <meta http-equiv="Content-Language" content="ru">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="CleanDrive — Выездная автомойка на дом">
+  <meta property="og:description" content="Чистота вашей машины — у вашего дома. Быстро, удобно, без лишних хлопот.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=1200">
+  <meta property="og:url" content="https://вашсайт.рф">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@cleandrive">
+  <meta name="twitter:title" content="CleanDrive — Выездная автомойка на дом">
+  <meta name="twitter:description" content="Чистота вашей машины — у вашего дома. Быстро, удобно, без лишних хлопот.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=1200">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Schema.org (исправленный) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": "CleanDrive — Выездная автомойка",
+    "description": "Профессиональная выездная автомойка у вас дома или на работе.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ваша улица, 1",
+      "addressLocality": "Ваш город",
+      "addressCountry": "RU"
+    },
+    "telephone": "+79999339909",
+    "openingHours": "Mo-Su 08:00-21:00",
+    "url": "https://вашсайт.рф",
+    "priceRange": "₽₽",
+    "image": "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=1200",
+    "areaServed": "Ваш город, пригород",
+    "sameAs": [
+      "https://wa.me/79999339909",
+      "https://t.me/cleandrive_bot"
+    ]
+  }
+  </script>
+
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    /* Общие стили */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.2s;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1a1a1a;
+      line-height: 1.6;
+      background-color: #f8f9fa;
+    }
+
+    /* === ТЕМНАЯ ТЕМА === */
+    body.dark-theme {
+      color: #e0e0e0;
+      background-color: #121212;
+    }
+
+    body.dark-theme .container,
+    body.dark-theme header,
+    body.dark-theme .services,
+    body.dark-theme .about,
+    body.dark-theme .order,
+    body.dark-theme .reviews,
+    body.dark-theme .map,
+    body.dark-theme .contact,
+    body.dark-theme .loyalty,
+    body.dark-theme .service-area {
+      background-color: #1e1e1e;
+    }
+
+    body.dark-theme .service-card,
+    body.dark-theme .review-card,
+    body.dark-theme .order-form,
+    body.dark-theme .about-img img,
+    body.dark-theme .review-avatar,
+    body.dark-theme .steps,
+    body.dark-theme .loyalty-card {
+      background-color: #2d2d2d;
+      border: 1px solid #333;
+    }
+
+    body.dark-theme .hero {
+      background: linear-gradient(135deg, #1a2a3a 0%, #121212 100%);
+    }
+
+    body.dark-theme .hero h1,
+    body.dark-theme .hero p,
+    body.dark-theme .section-title,
+    body.dark-theme .about-text h2,
+    body.dark-theme .contact h2,
+    body.dark-theme .steps-title,
+    body.dark-theme .loyalty-title {
+      color: #ffffff;
+    }
+
+    body.dark-theme .hero p,
+    body.dark-theme .about-text p,
+    body.dark-theme .contact p,
+    body.dark-theme .review-text,
+    body.dark-theme .rating,
+    body.dark-theme .contact-item a,
+    body.dark-theme .contact-item p,
+    body.dark-theme .step-text {
+      color: #bbbbbb;
+    }
+
+    body.dark-theme .nav-links a,
+    body.dark-theme .logo {
+      color: #e0e0e0;
+    }
+
+    body.dark-theme footer {
+      background-color: #0a0a0a;
+    }
+
+    body.dark-theme .form-group input,
+    body.dark-theme .form-group select,
+    body.dark-theme .form-group textarea {
+      background-color: #2d2d2d;
+      border-color: #555;
+      color: #e0e0e0;
+    }
+
+    body.dark-theme .service-icon {
+      filter: brightness(1.2);
+    }
+
+    /* Переключатель темы */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ffffff;
+      border: 1px solid #ddd;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 1001;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    body.dark-theme .theme-toggle {
+      background: #1a1a1a;
+      border-color: #444;
+      color: #ffcc00;
+    }
+
+    body.dark-theme .theme-toggle::before {
+      content: '☀️';
+    }
+
+    .theme-toggle::before {
+      content: '🌙';
+      font-size: 18px;
+    }
+
+    /* Остальные стили */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background-color: #ffffff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: #3b82f6;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1a1a1a;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #3b82f6;
+    }
+
+    .btn {
+      background-color: #3b82f6;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(59, 130, 246, 0.1);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 15px rgba(59, 130, 246, 0.2);
+    }
+
+    .btn-secondary {
+      background-color: #10b981;
+    }
+
+    .btn-secondary:hover {
+      background-color: #0d9488;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .hero {
+      padding: 160px 0 100px;
+      background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 100%);
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: #1a1a1a;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 60px;
+      color: #1a1a1a;
+    }
+
+    .services {
+      padding: 100px 0;
+      background-color: #ffffff;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .service-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+      background: #ffffff;
+    }
+
+    .service-icon {
+      display: inline-block;
+      font-size: 48px;
+      margin-bottom: 16px;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    .service-card h3 {
+      font-size: 22px;
+      margin: 20px 0 10px;
+    }
+
+    .service-card p {
+      color: #666;
+    }
+
+    .about {
+      padding: 100px 0;
+      background-color: #f8f9fa;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      margin-bottom: 15px;
+      color: #555;
+    }
+
+    .about-img {
+      flex: 1;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .about-img img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Как это работает */
+    .steps {
+      padding: 100px 0;
+      background-color: #ffffff;
+    }
+
+    .steps-title {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 50px;
+    }
+
+    .steps-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .step {
+      text-align: center;
+      max-width: 200px;
+    }
+
+    .step-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: #3b82f6;
+      color: white;
+      border-radius: 50%;
+      margin: 0 auto 15px;
+      font-weight: 700;
+    }
+
+    .step h4 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .step-text {
+      font-size: 15px;
+      color: #666;
+    }
+
+    body.dark-theme .step-text {
+      color: #aaa;
+    }
+
+    /* Программа лояльности */
+    .loyalty {
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .loyalty-title {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .loyalty-subtitle {
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .loyalty-card {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .loyalty-card h3 {
+      margin-bottom: 15px;
+      color: #3b82f6;
+    }
+
+    .loyalty-card p {
+      margin-bottom: 20px;
+      color: #666;
+    }
+
+    /* Зона обслуживания */
+    .service-area {
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .service-area iframe {
+      border-radius: 12px;
+      margin-top: 30px;
+    }
+
+    /* Отзывы */
+    .reviews {
+      padding: 100px 0;
+      background-color: #ffffff;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .review-card {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s;
+    }
+
+    .review-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .review-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #e0e0e0;
+    }
+
+    .review-meta strong {
+      font-size: 18px;
+      display: block;
+    }
+
+    .rating {
+      color: #fbbf24;
+      font-size: 14px;
+    }
+
+    .review-text {
+      color: #555;
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    /* Форма */
+    .order {
+      padding: 100px 0;
+      background-color: #ffffff;
+    }
+
+    .order .container {
+      max-width: 700px;
+    }
+
+    .order-form {
+      background: #f8f9fa;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .form-submit button {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      color: #16a34a;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    /* Контакты */
+    .contact {
+      padding: 100px 0;
+      background-color: #f8f9fa;
+      text-align: center;
+    }
+
+    /* Футер */
+    footer {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      text-align: center;
+      padding: 30px 0;
+      font-size: 14px;
+    }
+
+    /* WhatsApp */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+      transition: transform 0.3s;
+      text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.15);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+      }
+      .nav-links.active { display: flex; }
+      .menu-toggle { display: block; }
+      .hero h1 { font-size: 36px; }
+      .hero p { font-size: 18px; }
+      .about-content { flex-direction: column; }
+      .order-form { padding: 20px; }
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Переключатель темы -->
+  <div class="theme-toggle" id="themeToggle"></div>
+
+  <!-- Шапка -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">Clean<span>Drive</span></a>
+        <div class="nav-links">
+          <a href="#services">Услуги</a>
+          <a href="#about">О нас</a>
+          <a href="#steps">Как это работает</a>
+          <a href="#order">Заказать</a>
+          <a href="#reviews">Отзывы</a>
+          <a href="#contact">Контакты</a>
+        </div>
+        <div class="menu-toggle">☰</div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Главный экран -->
+  <section class="hero" data-aos="fade-up">
+    <div class="container">
+      <h1>Чистота вашей машины — у вашего дома</h1>
+      <p>Профессиональная выездная автомойка с доставкой чистоты к вам. Быстро, удобно, без лишних хлопот.</p>
+      <a href="#order" class="btn">Заказать сейчас</a>
+    </div>
+  </section>
+
+  <!-- Услуги -->
+  <section id="services" class="services" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Наши услуги</h2>
+      <div class="services-grid">
+        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-icon">🚿</div>
+          <h3>Экспресс-мойка</h3>
+          <p>Быстрая мойка кузова и стёкол. Идеально подходит для ежедневного ухода.</p>
+          <div style="font-size: 22px; font-weight: 700; color: #3b82f6; margin-top: 10px;">от 990 ₽</div>
+        </div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-icon">🚗</div>
+          <h3>Полная мойка</h3>
+          <p>Мойка кузова, днища, колёсных арок, салона и чистка стёкол.</p>
+          <div style="font-size: 22px; font-weight: 700; color: #3b82f6; margin-top: 10px;">от 1690 ₽</div>
+        </div>
+        <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-icon">🧽</div>
+          <h3>Химчистка салона</h3>
+          <p>Глубокая очистка сидений, ковриков и панелей с использованием профессиональных средств.</p>
+          <div style="font-size: 22px; font-weight: 700; color: #3b82f6; margin-top: 10px;">от 1990 ₽</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- О нас -->
+  <section id="about" class="about" data-aos="fade-up">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>Мы — CleanDrive</h2>
+          <p>Мы приезжаем к вам домой, в офис или на парковку — где бы ни была ваша машина, мы сделаем её чистой.</p>
+          <p>Используем экологичные моющие средства и профессиональное оборудование, которое не требует подключения к водопроводу.</p>
+          <p>Работаем 7 дней в неделю с 8:00 до 21:00. Время мойки — от 30 минут.</p>
+          <a href="#order" class="btn">Записаться</a>
+        </div>
+        <div class="about-img">
+          <img src="file:///C:/Users/user/Desktop/001.jpeg" alt="Мойка автомобиля на выезде">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Как это работает -->
+  <section id="steps" class="steps" data-aos="fade-up">
+    <div class="container">
+      <h2 class="steps-title">Как это работает</h2>
+      <div class="steps-grid">
+        <div class="step" data-aos="fade-up" data-aos-delay="100">
+          <div class="step-num">1</div>
+          <h4>Оставляете заявку</h4>
+          <p class="step-text">Через сайт, WhatsApp или звонком</p>
+        </div>
+        <div class="step" data-aos="fade-up" data-aos-delay="200">
+          <div class="step-num">2</div>
+          <h4>Подтверждаем время</h4>
+          <p class="step-text">Мастер свяжется в течение 15 минут</p>
+        </div>
+        <div class="step" data-aos="fade-up" data-aos-delay="300">
+          <div class="step-num">3</div>
+          <h4>Приезжаем к вам</h4>
+          <p class="step-text">С оборудованием и чистящими средствами</p>
+        </div>
+        <div class="step" data-aos="fade-up" data-aos-delay="400">
+          <div class="step-num">4</div>
+          <h4>Чистим машину</h4>
+          <p class="step-text">30–60 минут — и ваш авто как новый</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Гарантия -->
+  <div style="text-align: center; padding: 40px 20px; background: #f0fdf4; border-radius: 12px; margin: 50px 0;" data-aos="fade-up">
+    <strong style="font-size: 24px; color: #065f46;">Гарантия чистоты</strong>
+    <p style="color: #166534; margin: 10px 0;">
+      Если чем-то не довольны — переделаем бесплатно.
+    </p>
+  </div>
+
+  <!-- Отзывы -->
+  <section id="reviews" class="reviews" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Что говорят клиенты</h2>
+      <p style="text-align: center; color: #555; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+        Нам важна каждая оценка. Вот что говорят те, кто уже попробовал нашу выездную мойку.
+      </p>
+      <div class="reviews-grid">
+        <div class="review-card" data-aos="fade-right" data-aos-delay="100">
+          <div class="review-header">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Алексей" class="review-avatar">
+            <div class="review-meta">
+              <strong>Алексей К.</strong>
+              <div class="rating">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">
+            «Приехали точно в назначенное время, помыли за 40 минут. Машина как новая! Особенно впечатлило, что всё оборудование с собой — не нужно никуда ехать. Буду заказывать регулярно.»
+          </p>
+        </div>
+        <div class="review-card" data-aos="fade-right" data-aos-delay="200">
+          <div class="review-header">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Марина" class="review-avatar">
+            <div class="review-meta">
+              <strong>Марина П.</strong>
+              <div class="rating">★★★★★</div>
+            </div>
+          </div>
+          <p class="review-text">
+            «Заказывала химчистку салона — результат превзошёл ожидания. Устранили запах, коврики как новые. Очень вежливый мастер. Спасибо, CleanDrive!»
+          </p>
+        </div>
+        <div class="review-card" data-aos="fade-right" data-aos-delay="300">
+          <div class="review-header">
+            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Дмитрий" class="review-avatar">
+            <div class="review-meta">
+              <strong>Дмитрий С.</strong>
+              <div class="rating">★★★★☆</div>
+            </div>
+          </div>
+          <p class="review-text">
+            «Удобно, быстро, чисто. Был дождливый день, а они всё равно приехали. Единственное — чуть опоздали на 10 минут, но предупредили заранее. Всё ок!»
+          </p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="https://wa.me/79999339909?text=Хочу%20оставить%20отзыв!" target="_blank" class="btn btn-secondary">
+          📝 Оставить отзыв
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Программа лояльности -->
+  <section class="loyalty" data-aos="fade-up">
+    <div class="container">
+      <h2 class="loyalty-title">Программа лояльности</h2>
+      <p class="loyalty-subtitle">Чем чаще моетесь — тем выгоднее!</p>
+      <div class="loyalty-card">
+        <h3>5 → 6-я мойка бесплатно!</h3>
+        <p>Сделайте 5 заказов — 6-я мойка в подарок.</p>
+        <a href="https://wa.me/79999339909?text=Хочу%20участие%20в%20программе%20лояльности!" target="_blank" class="btn">Участвовать</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Зона обслуживания -->
+  <section class="service-area" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Зона обслуживания</h2>
+      <p style="color: #555; max-width: 700px; margin: 0 auto 30px;">
+        Работаем по всему городу и пригороду: центр, спальные районы, бизнес-парки.
+      </p>
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d93429.81611655097!2d47.407291405618565!3d42.96391052295066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x404d43d957c36b2f%3A0xa4f5323eaf6c112d!2sMakhachkala%2C%20Republic%20of%20Dagestan!5e0!3m2!1sen!2sru!4v1756736604566!5m2!1sen!2sru" 
+        width="100%" 
+        height="400" 
+        style="border:0; border-radius: 12px;" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Форма -->
+  <section id="order" class="order" data-aos="zoom-in">
+    <div class="container">
+      <h2>Закажите автомойку</h2>
+      <p>Укажите удобное время — и мы приедем к вам!</p>
+      <form class="order-form" id="bookingForm">
+        <div class="form-group">
+          <label for="service">Выберите услугу</label>
+          <select id="service" name="service" required>
+            <option value="">-- Выберите --</option>
+            <option value="express">Экспресс-мойка</option>
+            <option value="full">Полная мойка</option>
+            <option value="interior">Химчистка салона</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="datetime">Дата и время</label>
+          <input type="datetime-local" id="datetime" name="datetime" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Телефон</label>
+          <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67" required />
+        </div>
+        <div class="form-group">
+          <label for="address">Адрес (улица, дом, подъезд)</label>
+          <input type="text" id="address" name="address" placeholder="ул. Ленина, 15, подъезд 2" required />
+        </div>
+        <div class="form-group">
+          <label for="comment">Комментарий</label>
+          <textarea id="comment" name="comment" placeholder="Например: приеду с работы к 18:00"></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit">Отправить заявку</button>
+        </div>
+        <div class="success-message" id="successMessage">
+          Спасибо! Мы свяжемся с вами в течение 15 минут.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section id="contact" class="contact" data-aos="fade-up">
+    <div style="margin-top: 30px; color: #555;">
+  <p><strong>Телефон:</strong> <a href="tel:+79999339909">+7 (999) 933-99-09</a></p>
+  <p><strong>Рабочее время:</strong> Пн–Вс: 8:00–21:00</p>
+  <p><strong>Мы в мессенджерах:</strong></p>
+  <p>
+    <a href="https://wa.me/79999339909" target="_blank" style="color: #25D366;">WhatsApp</a> | 
+    <a href="https://t.me/cleandrive_bot" target="_blank" style="color: #0088cc;">Telegram</a>
+  </p>
+</div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer data-aos="fade-up">
+    <div class="container">
+      <p>&copy; 2025 CleanDrive. Все права защищены. Выездная автомойка по городу и области.</p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/79999339909?text=Здравствуйте!%20Хочу%20заказать%20мойку." target="_blank" class="whatsapp-float" title="Написать в WhatsApp">💬</a>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, easing: 'ease-in-out', once: true, offset: 100 });
+
+    // Мобильное меню
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
+
+    // Плавная прокрутка
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Темная тема
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark-theme');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-theme');
+      localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>
